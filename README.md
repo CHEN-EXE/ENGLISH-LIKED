@@ -2,9 +2,12 @@
 ## 介绍
 <p align="center">
   <img alt="ENGLISH-LIKED " style="height:240px;margin-bottom:10px;" src="./Word.png"><br>
- 
+ <img alt="GitHub forks" src="https://img.shields.io/github/forks/CHEN-EXE/ENGLISH-LIKED">
+   <img alt="GitHub star" src="[https://img.shields.io/github/forks/CHEN-EXE/ENGLISH-LIKED](https://img.shields.io/github/stars/CHEN-EXE/ENGLISH-LIKED)">
+<br>
   <img alt="ENGLISH-LIKED LOGO" src="./EN-LOGO.png">
 </p><br>
+
 
 English word spelling and dictation system built on PHP.
 禁止用于商业用途！
