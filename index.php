@@ -1,5 +1,4 @@
 <?php
-// 2025
 $part = $_GET['part'];
 session_start();
 $_SESSION['data'] = $part;
