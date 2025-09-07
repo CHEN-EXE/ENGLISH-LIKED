@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENGLISH-LIKED</title>
+    <link href="./gla.css" rel="stylesheet">
+     <link rel="icon" href="./img/fa.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="./t.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#6366F1'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '2px',
+                        DEFAULT: '4px',
+                        'md': '8px',
+                        'lg': '12px',
+                        'xl': '16px',
+                        '2xl': '20px',
+                        '3xl': '24px',
+                        'full': '9999px',
+                        'button': '4px'
+                    }
+                }
+            }
+        }
+    </script>
+ 
+    <style>
+     
+/* From Uiverse.io by barisdogansutcu */ 
+svg {
+    width: 2.25em;
+ transform-origin: center;
+ animation: rotate4 2s linear infinite;
+}
+.rounded-button {
+    border-radius: 18px !important;
+}
+
+circle {
+fill: none;
+    stroke: rgb(79 70 229 / var(--tw-text-opacity, 1));
+    stroke-width: 3px;
+    stroke-dasharray: 1, 202;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 2.5s ease-in-out infinite;
+}
+
+.diy-select{
+    outline: none;
+}
+
+.diy-select:hover{
+    box-shadow: 0px 0px 20px rgb(0 0 0 / 21%);
+}
+
+@keyframes rotate4 {
+ 100% {
+  transform: rotate(360deg);
+ }
+}
+
+@keyframes dash4 {
+ 0% {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+ }
+
+ 50% {
+  stroke-dasharray: 90, 200;
+  stroke-dashoffset: -35px;
+ }
+
+ 100% {
+  stroke-dashoffset: -125px;
+ }
+}
+@font-face {
+    font-family: 'Harmony';
+    src: url('./font/HarmonyOS_Sans_Medium.ttf') format('truetype');
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+100% {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+        body {
+            min-height: 100%;
+            background-color: #F9FAFB;
+            font-family: 'Harmony' !important;
+                              
+    
+        }
+        .underline-input {
+            border: none;
+            border-bottom: 2px solid #E5E7EB;
+            background: transparent;
+            transition: border-color 0.3s;
+             font-family: 'Harmony' !important;
+        }
+        .underline-input:focus {
+            outline: none;
+            border-bottom-color: #4F46E5;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            background: #E5E7EB;
+            border-radius: 2px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #4F46E5;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-[1440px] mx-auto px-8 py-6">
+        <header style="                  
+      
+        animation:none!important;
+
+    position: fixed;
+    top: 0;
+    right: 0;      transition: none;
+    width: 100%;
+    background-color: #ffffff87;
+    padding: 10px;
+    box-shadow: 0px 1px 10px #9e9e9e36;
+    
+      " class="flex justify-between items-center mb-8">
+            <div class="flex items-center gap-2">
+                <a class="flex text-3xl font-bold text-gray-900" style="    margin-left: 19px;">
+                    <img src="./img/module.png" style="    height: 37px;
+    margin-right: 10px;" alt="图标" /></a>
+            </div>
+           
+                      <div  class="flex items-center gap-2">
+                    
+    <dialog style="    padding: 9px;
+    border-radius: 22px;
+    width: 288px;
+    width: 302px;
+    box-shadow: 0px 0px 20px rgb(0 0 0 / 21%);"id="rateDialog">
+        <div style="margin-bottom:4px;font-size:23px;" class="text-lg font-medium text-gray-900"><i style="margin-right:10px;" class="fa-solid fa-gear w-6 h-6"></i>听写设置</div>
+                    <span class="text-sm text-gray-600">模式</span>    <form  onsubmit="event.preventDefault(); updateOrder();">
+                    <select id="order" name="order" class="bg-white border border-gray-200 rounded-button px-3 py-1 text-sm diy-select">
+                         <option value="">选择模式</option>
+                        <option value="&order=">正序模式</option>
+                        <option  value="&order=reverse">倒序模式</option>
+                    </select></form>
+            
+                    <span style="margin-bottom:4px;" class="text-sm text-gray-600">单元</span><br>
+                
+               <select id="pageSelector" name="pageSelector" class="bg-white border border-gray-200 rounded-button px-3 py-1 text-sm diy-select">
+            <option value="?part=home">选择单元</option>
+        </select>
+                <br>
+                <p id="Status"></p>
+                
+        <span style="margin-bottom:4px;" class="text-sm text-gray-600">朗读语速</span><br>
+        <select style="margin-bottom:4px;" class="bg-white border border-gray-200 rounded-button px-3 py-1 text-sm diy-select" id="rateSelect">
+            <option value="0.5">慢</option>
+            <option value="1" selected>正常</option>
+            <option value="1.5">快</option>
+            <option value="2">非常快</option>
+        </select><br><br>
+        <button  class="bg-primary text-white px-6 py-2 rounded-button hover:bg-primary/90" onclick="setRate()">保存</button>
+        <button class="bg-white border border-gray-200 text-gray-700 px-6 py-2 rounded-button hover:bg-gray-50" onclick="document.getElementById('rateDialog').close()">取消</button>
+    </dialog>
+      <button onclick="openRateDialog()" class="bg-white border border-gray-200 text-gray-700 px-6 py-2 rounded-button hover:bg-gray-50">
+                        <i class="fa-solid fa-gear"></i>
+                    </button>
+                <a href="?part=home" class="checks bg-primary text-white px-6 py-2 rounded-button hover:bg-primary/90">
+               <i class="fa-solid fa-house"></i>
+            </a>
+            </div>
+        </header>
+        <br><br>
+        
+        
+        
+        
+        
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  
+        
+        
+        
+        
+        
+        
+
+<div  id="load"  style="                  
+        transition: all 0.3s ease;
+        animation: fadeIn 0.4s linear;display: flex
+;
+    margin-bottom: 18px;">
+<svg viewBox="25 25 50 50">
+  <circle r="20" cy="50" cx="50"></circle>
+</svg>
+</div>
+        <div id="test" style="display:none;                  
+        transition: all 0.3s ease;
+        margin-top: 23px;
+        animation: fadeIn 1s linear;">
+
+ <script>
+
+   // 初始
+       let speechRate = 1;
+
+function speakText(text) {
+    
+    var utterance = new SpeechSynthesisUtterance(text);
+
+    //属性
+    utterance.lang = 'zh-CN'; // 中文
+    utterance.rate = speechRate; 
+    utterance.pitch = 1;
+    utterance.volume = 1; 
+
+    // 播放
+    window.speechSynthesis.speak(utterance);
+    
+const toast = document.createElement('div');
+toast.className = 'fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 !rounded-button shadow-lg transform transition-all duration-500 opacity-0 translate-y-2';
+toast.style = `
+    position: fixed; 
+    top: auto; 
+    bottom: 16px; 
+    right: 16px; 
+    background: rgb(79 70 229 / var(--tw-text-opacity, 1));
+    border-radius: 3px;
+    height: 40px;
+    font-size:20px;
+    color: rgb(255, 255, 255);
+    padding: 6px 15px 8px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+    z-index: 9999; /* 设置一个较高的 z-index 值 */
+`;
+toast.textContent = (text); // 示例文本
+document.body.appendChild(toast);
+
+setTimeout(() => {
+    toast.classList.remove('opacity-0', 'translate-y-2');
+}, 100);
+
+setTimeout(() => {
+    toast.classList.add('opacity-0', 'translate-y-2');
+    setTimeout(() => toast.remove(), 500);
+}, 3000);
+}
+      
+
+        // 语速
+        function setRate() {
+            speechRate = document.getElementById('rateSelect').value;
+            document.getElementById('rateDialog').close();
+            const toast = document.createElement('div');
+ toast.className = 'fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 !rounded-button shadow-lg transform transition-all duration-500 opacity-0 translate-y-2';
+ toast.style = `position: absolute;
+    top: 7px;
+    background: rgb(79 70 229 / var(--tw-text-opacity, 1));
+    border-radius: 3px;
+    height: 36px;
+    color: rgb(255, 255, 255);
+    padding: 6px 15px 8px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;`;
+ toast.textContent = '设置已生效。';
+ document.body.appendChild(toast);
+ setTimeout(() => {
+ toast.classList.remove('opacity-0', 'translate-y-2');
+ }, 100);
+ setTimeout(() => {
+ toast.classList.add('opacity-0', 'translate-y-2');
+ setTimeout(() => toast.remove(), 500);
+ }, 3000);
+        }
+
+
+    // 打开窗口
+          function openRateDialog() {
+            document.getElementById('rateDialog').showModal();
+             const pageSelector = document.getElementById('pageSelector');
+            fetch('./config.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('请求出现了错误');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    data.unit.forEach(item => {
+const option = '';
+                        const option = document.createElement('option');
+                        option.value = item.site;
+                        option.textContent = item.part;
+                        pageSelector.appendChild(option);
+                    });
+
+                    pageSelector.addEventListener('change', function() {
+                        const selectedPage = this.value;
+                        if (selectedPage) {
+                            window.location.href = selectedPage;
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('出错了：', error);
+                     document.getElementById('Status').style = `
+                     color:red;
+                     `
+                  document.getElementById('Status').textContent = `通信系统配置文件出错，请检查config.json。(${error})`;
+                });
+        }
+
+ function okload(){
+      const toast = document.createElement('div');
+ toast.className = 'fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 !rounded-button shadow-lg transform transition-all duration-500 opacity-0 translate-y-2';
+ toast.style = `position: absolute;
+    top: 7px;
+    background: rgb(79 70 229 / var(--tw-text-opacity, 1));
+    border-radius: 3px;
+    height: 36px;
+    color: rgb(255, 255, 255);
+    padding: 6px 15px 8px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;`;
+ toast.textContent = '✅ 设置完成，即将刷新以生效';
+ document.body.appendChild(toast);
+ setTimeout(() => {
+ toast.classList.remove('opacity-0', 'translate-y-2');
+ }, 100);
+ setTimeout(() => {
+ toast.classList.add('opacity-0', 'translate-y-2');
+ setTimeout(() => toast.remove(), 500);
+ }, 3000);
+ }
+   // 等待2秒后隐藏load并显示test
+        window.onload = function() {
+            setTimeout(function() {
+                // 获取元素
+                var loadDiv = document.getElementById('load');
+                var testDiv = document.getElementById('test');
+
+                // 隐藏load，显示test
+                loadDiv.style.display = 'none';
+                testDiv.style.display = 'block';
+            }, 1000); // 2000毫秒 = 2秒
+        };
+      
+        
+        
+          // 下拉元素
+        const order = document.getElementById('order');
+   // 页面地址
+            var currentUrl = window.location.href;
+        order.addEventListener('change', function() {
+                const orders = this.value;
+            if (orders) {okload();
+                window.location.href = currentUrl+orders;
+                
+            }
+        }); 
+        function ro(){
+                        location.href = location.href;
+                    }
+    </script>
+            <div class="space-y-8">
+               </body>
+               </html>

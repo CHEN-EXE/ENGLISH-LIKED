@@ -1,0 +1,74 @@
+<style>
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    min-height: 1024px;
+    background-color: #F9FAFB;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.underline-input {
+    border: none;
+    border-bottom: 2px solid #E5E7EB;
+    background: transparent;
+    outline: none;
+    padding: 8px 0;
+    transition: all 0.3s;
+}
+.underline-input:focus {
+    border-bottom-color: #4F46E5;
+}
+</style>
+<h1 style="        margin-top: -9px;
+    font-size: 39px;
+    margin-bottom: -27px;margin-top:-12px;font-size:43px;margin-bottom:-22px;">单词门户</h1>
+<div  id="data-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+
+</div>
+<section id="error-container"></section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('./config.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+            
+                const container = document.getElementById('data-container');
+
+                
+                data.unit.forEach(item => {
+                    const div = document.createElement('div');
+                    div.style.borderRadius = '11px';
+                    div.style.border = '1px solid #ededed';
+                    div.className = 'bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow cursor-pointer';
+                    div.innerHTML = `
+                        <div class="text-xl font-medium mb-4">${item.part}</div>
+                        <div class="text-gray-600 mb-4">${item.description}</div>
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm text-gray-500">词汇量：${item.WordNumber}</div>
+                            <button class="px-4 py-1.5 bg-primary text-white hover:bg-primary/90 rounded-button whitespace-nowrap text-sm" onclick="window.location.href='${item.site}'">
+                                开始学习！
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            })
+            .catch(error => {
+                const container = document.getElementById('error-container');
+                console.error('出错了：', error);
+                container.innerHTML = `<div class="flex flex-col items-center justify-center min-h-[600px]">
+                    <h2 class="text-2xl font-medium text-gray-900 mb-4">出错了</h2>
+                    <p class="text-gray-600 mb-8">当前系统配置文件出错</p>
+                    <code>${error}</code>
+                </div>`;
+            });
+    });
+</script>
