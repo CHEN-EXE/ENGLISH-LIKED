@@ -1,7 +1,7 @@
 # ENGLISH-LIKED
 ## 介绍
 <p align="center">
-  <img alt="ENGLISH-LIKED " style="height:240px;margin-bottom:10px;" src="./Word.png"><br>
+  <img alt="ENGLISH-LIKED " style="margin-bottom:10px;" src="./Word.png"><br>
  <img alt="GitHub forks" src="https://img.shields.io/github/forks/CHEN-EXE/ENGLISH-LIKED">
  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/CHEN-EXE/ENGLISH-LIKED">
 <br>
