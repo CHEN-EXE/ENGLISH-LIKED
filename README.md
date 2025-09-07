@@ -6,8 +6,13 @@
  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/CHEN-EXE/ENGLISH-LIKED">
 <br>
   <img alt="ENGLISH-LIKED LOGO" src="./EN-LOGO.png">
-</p><br>
+</p>
 
+## 示例图
+<p align="center">
+  <img alt="ENGLISH-LIKED " style="margin-bottom:10px;" src="./testWords.png"><br>
+  <img alt="event" src="./Event.png">
+</p>
 
 English word spelling and dictation system built on PHP.
 禁止用于商业用途！
