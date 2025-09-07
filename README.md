@@ -16,7 +16,6 @@
 
 English word spelling and dictation system built on PHP.
 禁止用于商业用途！
-## 代码未上传，烦请耐心等待。
 ## 已知问题
 > [!WARNING]
 > 单词朗读无法朗读短语。带空格的单词不能朗读。
