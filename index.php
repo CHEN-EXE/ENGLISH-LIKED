@@ -10,37 +10,14 @@ switch ($part)
 
 
 case "u1":
-    require "./part/9-u1.php";
+    require "./part/9-u1.php"; // 单词数据文件
     break;
-    
-case "u2":
-    require "./part/u2.php";
-    break;
-    
-case "u3":
-    require "./part/u3.php";
-    break;
-    
-case "u5":
-    require "./part/u5.php";
-    break;
-    
-case "u6":
-    require "./part/u6.php";
-    break;
+/** /这个勿删！ **/
     
 case "home":
     
     require "./part/home.html";
     return;
-    break;
-    
-case "u7":
-    require "./part/u7.php";
-    break;
-    
-case "u8":
-    require "./part/u8.php";
     break;
     
 default:
@@ -55,27 +32,23 @@ default:
 return;
 }
 
-// 使用json_decode将JSON字符串解析为PHP数组
+
 $data = json_decode($jsonString, true);
 
-// 检查是否解析成功
+
 if (json_last_error() === JSON_ERROR_NONE) {
-    
-  // 获取用户选择的顺序
+
     $order = isset($_GET['order']) ? $_GET['order'] : 'normal';
 
-    // 根据用户选择的顺序对数据进行排序
     switch ($order) {
         case 'reverse':
             $data['questions'] = array_reverse($data['questions']);
             break;
         default:
-            // 正序，不做任何操作
             break;
     }
 
 
-    // 如果有提交的答案
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
