@@ -22,19 +22,23 @@ English word spelling and dictation system built on PHP.
 ## 介绍
 ENGLISH-LIKED 是一个基于php构建的英语单词听写系统，可通过 PHP 个性化单词数量单词内容，配置单元，配置页面。
 ## 部署
-无需执行任何控制台操作，只需要2步骤，您可能需要为您的服务器部署***宝塔面板**或者***nginx,php或者apache***，php是必不可少的，系统依靠php服务，建议安装php**7.4**，以避免不必要的麻烦。<br>
+该系统小巧实用，不会占用太大空间。<br>
+简单上手，轻松部署，只需要2步骤，您可能需要为您的服务器安装***宝塔面板**或者，**nginx,php或者apache**环境。这里php环境是必不可少的，系统依靠php服务，建议安装php**7.4**，以避免不必要的麻烦。<br>
 ### 1. 下载仓库文件<br>
-建议通过Git Clone下载，当然你也可以用zip解压。
+建议通过Git Clone克隆下载，当然你也可以通过zip解压。
 ```bash
 git clone https://github.com/CHEN-EXE/ENGLISH-LIKED.git
 ```
 ### 2.访问您的站点
 如果服务成功运行，您会在网页上看到一个 ***课程出错了
-当前单元课程不存在***。
+当前单元课程不存在***。<br>
+该情况是正常的，下一步我们开始单词配置。
 
 ## 单词配置
 ### 2.配置单词数据
-我们在/part/目录预置了一个单词模板php文件，其中，``$lesson``变量是指单元名称，可任意填写。<br>
+我们在/part/目录预置了一个单词模板php文件(附注释信息)，其中，``$lesson``变量是指单元名称，可任意填写。<br>
+> [$WARNING]
+> 内置的**?part=home**路由切勿删除！
 ``$jsonString``变量是单词数据列表。里面有一个``questions``，指数据列。其中含json。<br>
 下面是一个json示例
 ```json
