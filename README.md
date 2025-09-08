@@ -37,8 +37,9 @@ git clone https://github.com/CHEN-EXE/ENGLISH-LIKED.git
 ## 单词配置
 ### 2.配置单词数据
 我们在/part/目录预置了一个单词模板php文件(附注释信息)，其中，``$lesson``变量是指单元名称，可任意填写。<br>
-> [$WARNING]
+> [！WARNING]
 > 内置的**?part=home**路由切勿删除！
+<br>
 ``$jsonString``变量是单词数据列表。里面有一个``questions``，指数据列。其中含json。<br>
 下面是一个json示例
 ```json
