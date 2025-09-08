@@ -11,7 +11,7 @@ switch ($part)
 case "u1":
     require "./part/9-u1.php"; // 单词数据文件
     break;
-/** /这个勿删！ **/
+/** 这个勿删！ **/
     
 case "home":
     
