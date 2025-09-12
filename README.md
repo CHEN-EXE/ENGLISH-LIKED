@@ -16,9 +16,8 @@
 
 English word spelling and dictation system built on PHP.
 禁止用于商业用途！
-## 已知问题
-> [!WARNING]
-> 单词朗读无法朗读短语。带空格的单词不能朗读。
+## 当前版本
+V1.1.1
 ## 介绍
 ENGLISH-LIKED 是一个基于php构建的英语单词听写系统，可通过 PHP 个性化单词数量单词内容，配置单元，配置页面。
 ## 部署
