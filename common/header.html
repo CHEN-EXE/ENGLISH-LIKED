@@ -53,7 +53,9 @@ fill: none;
     stroke-linecap: round;
     animation: dash4 2.5s ease-in-out infinite;
 }
-
+.text-Home{
+    display: none;
+}
 .diy-select{
     outline: none;
 }
@@ -97,6 +99,15 @@ fill: none;
     opacity: 1;
     transform: translateY(0);
 }
+}
+
+.XmarkButton{
+        position: absolute;
+    right: 17px;
+    color: #000000;
+}
+.XmarkButton:hover{
+    color: #737373;
 }
 
         body {
@@ -155,19 +166,25 @@ fill: none;
     margin-right: 10px;" alt="图标" /></a>
             </div>
            
-                      <div  class="flex items-center gap-2">
+                      <div  class="flex items-center gap-2" style="    margin-right: 10px;">
                     
-    <dialog style="    padding: 9px;
+    <dialog class="transform transition-all duration-500" style="    padding: 9px;
     border-radius: 22px;
     width: 288px;
     width: 302px;
+      transition: all 0.3s ease;
+        animation: fadeIn 0.2s linear;display: flex
     box-shadow: 0px 0px 20px rgb(0 0 0 / 21%);"id="rateDialog">
-        <div style="margin-bottom:4px;font-size:23px;" class="text-lg font-medium text-gray-900"><i style="margin-right:10px;" class="fa-solid fa-gear w-6 h-6"></i>听写设置</div>
+        <div style="display:flex;margin-bottom:4px;font-size:23px;" class="text-lg font-medium text-gray-900"><i style="    margin-right: 6px;
+    margin-left: 5px;
+    margin-top: 3px;" class="fa-solid fa-gear w-6 h-6"></i>听写设置 
+        <button  onclick="dialog_close()" class="XmarkButton"><i class="fa-solid fa-xmark"></i></button>
+        </div>
                     <span class="text-sm text-gray-600">模式</span>    <form  onsubmit="event.preventDefault(); updateOrder();">
                     <select id="order" name="order" class="bg-white border border-gray-200 rounded-button px-3 py-1 text-sm diy-select">
                          <option value="">选择模式</option>
-                        <option value="&order=">正序模式</option>
-                        <option  value="&order=reverse">倒序模式</option>
+                        <option value="&order=">恢复为正序排列</option>
+                        <option  value="&order=reverse">倒序排列</option>
                     </select></form>
             
                     <span style="margin-bottom:4px;" class="text-sm text-gray-600">单元</span><br>
@@ -185,13 +202,12 @@ fill: none;
             <option value="1.5">快</option>
             <option value="2">非常快</option>
         </select><br><br>
-        <button  class="bg-primary text-white px-6 py-2 rounded-button hover:bg-primary/90" onclick="setRate()">保存</button>
-        <button class="bg-white border border-gray-200 text-gray-700 px-6 py-2 rounded-button hover:bg-gray-50" onclick="document.getElementById('rateDialog').close()">取消</button>
+        <button style="width:100%;"  class="bg-primary text-white px-6 py-2 rounded-button hover:bg-primary/90" onclick="setRate()">保存</button>
     </dialog>
       <button onclick="openRateDialog()" class="bg-white border border-gray-200 text-gray-700 px-6 py-2 rounded-button hover:bg-gray-50">
                         <i class="fa-solid fa-gear"></i>
                     </button>
-                <a href="?part=home" class="checks bg-primary text-white px-6 py-2 rounded-button hover:bg-primary/90">
+                <a href="?part=home" class=" Panel_btn checks bg-primary text-white px-6 py-2 rounded-button hover:bg-primary/90">
                <i class="fa-solid fa-house"></i>
             </a>
             </div>
@@ -260,7 +276,7 @@ toast.style = `
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 0.5s;
-    z-index: 9999; /* 设置一个较高的 z-index 值 */
+    z-index: 9999; 
 `;
 toast.textContent = (text); // 示例文本
 document.body.appendChild(toast);
@@ -275,11 +291,18 @@ setTimeout(() => {
 }, 3000);
 }
       
-
+ function dialog_close(){
+         pageSelector.innerHTML = '<option value="">选择单元</option>';
+           document.getElementById('rateDialog').classList.add('opacity-0', 'translate-y-2');
+           setTimeout(() => {
+    document.getElementById('rateDialog').close()
+}, 300);
+ }
+ 
         // 语速
         function setRate() {
             speechRate = document.getElementById('rateSelect').value;
-            document.getElementById('rateDialog').close();
+          dialog_close();
             const toast = document.createElement('div');
  toast.className = 'fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 !rounded-button shadow-lg transform transition-all duration-500 opacity-0 translate-y-2';
  toast.style = `position: absolute;
@@ -292,7 +315,7 @@ setTimeout(() => {
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 0.5s;`;
- toast.textContent = '设置已生效。';
+ toast.innerHTML = `<i class="fa-solid fa-check" style="margin-right:10px;"></i>设置已生效`;
  document.body.appendChild(toast);
  setTimeout(() => {
  toast.classList.remove('opacity-0', 'translate-y-2');
@@ -307,17 +330,18 @@ setTimeout(() => {
     // 打开窗口
           function openRateDialog() {
             document.getElementById('rateDialog').showModal();
+            document.getElementById('rateDialog').classList.remove('opacity-0', 'translate-y-2');
              const pageSelector = document.getElementById('pageSelector');
             fetch('./config.json')
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('请求出现了错误');
+                        throw new Error('请求出错，请检查 config.json 文件是否存在语句错误！');
                     }
                     return response.json();
                 })
                 .then(data => {
                     data.unit.forEach(item => {
-const option = '';
+
                         const option = document.createElement('option');
                         option.value = item.site;
                         option.textContent = item.part;
@@ -336,7 +360,7 @@ const option = '';
                      document.getElementById('Status').style = `
                      color:red;
                      `
-                  document.getElementById('Status').textContent = `通信系统配置文件出错，请检查config.json。(${error})`;
+                  document.getElementById('Status').textContent = `通信配置文件出错，错误回调：(${error})`;
                 });
         }
 
@@ -392,6 +416,9 @@ const option = '';
         function ro(){
                         location.href = location.href;
                     }
+                    
+                    
+
     </script>
             <div class="space-y-8">
                </body>

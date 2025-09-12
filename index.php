@@ -125,9 +125,7 @@ return;
 }
 ?>
 <script src="https://cdn.jsdelivr.net/npm/speakjs@0.2.0/speak.min.js"></script>
-<script>
-    
-</script>
+
 
   
    <form type="hidden" method="post">
